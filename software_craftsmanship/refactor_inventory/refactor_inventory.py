@@ -32,7 +32,7 @@ import os
 def findAdditionalFiles():
 
     root=os.path.dirname(__file__)
-    log_files=glob(os.path.join(ro3884-==-ot,'data', '*.log'))
+    log_files=glob(os.path.join(root,'data', '*.log'))
     return log_files   
     
     
