@@ -45,9 +45,6 @@ def findDifference(img1,img2):
 image=os.path.dirname(__file__)+'/dc_metro.png'
 img = np.array(plt.imread(image))
 
-test=[[i for i in range(10)] for i in range(10)]
-print(filterImage(test,1))
-
 plt.subplot(2,2,1)
 plt.imshow(img, cmap=plt.cm.hot)
 plt.title("Original image")
@@ -59,7 +56,7 @@ plt.title("Filtered Image")
 
 plt.subplot(2,2,3)
 plt.imshow(findDifference(img,newImg), cmap=plt.cm.hot)
-plt.title("Difference Between Images") #????????????
+plt.title("Difference Between Images") 
 
 plt.subplot(2,2,4)
 
