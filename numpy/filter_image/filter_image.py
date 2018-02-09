@@ -29,35 +29,31 @@ import os
 import numpy as np
 
 
-def filterImage(img):
+def filterImage(img,numTimes):
     img=np.array(img)
-    
-    img=(img[:-1,:-1]+img[1:,:-1]+img[:-1,1:]+img[1:,1:])/4   
+    for i in range(numTimes):
+        img[1:-1,1:-1]=(img[1:-1,1:-1]+img[1:-1,:-2]+img[1:-1,2:]+img[:-2,1:-1]+img[2:,1:-1])/5   
     
     return img
 
-def reFilterImage(img, numTimes):
-    newImage=img
-    for i in range(50):
-        newImage=filterImage(newImage)
-    return newImage
+
     
 def findDifference(img1,img2):
-    return img1[1:,1:]-img2
+    return img1-img2
         
 
 image=os.path.dirname(__file__)+'/dc_metro.png'
 img = np.array(plt.imread(image))
-'''
+
 test=[[i for i in range(10)] for i in range(10)]
-print(filterImage(test))
-'''
+print(filterImage(test,1))
+
 plt.subplot(2,2,1)
 plt.imshow(img, cmap=plt.cm.hot)
 plt.title("Original image")
 
 plt.subplot(2,2,2)
-newImg=filterImage(img)
+newImg=filterImage(img,1)
 plt.imshow(newImg, cmap=plt.cm.hot)
 plt.title("Filtered Image")
 
@@ -67,7 +63,7 @@ plt.title("Difference Between Images") #????????????
 
 plt.subplot(2,2,4)
 
-plt.imshow(reFilterImage(img,50), cmap=plt.cm.hot)
+plt.imshow(filterImage(img,50), cmap=plt.cm.hot)
 plt.title("Filtered 50x Image")
 
 plt.show()
