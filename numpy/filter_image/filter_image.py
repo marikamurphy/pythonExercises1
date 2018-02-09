@@ -40,10 +40,14 @@ def reFilterImage(img, numTimes):
     newImage=img
     for i in range(50):
         newImage=filterImage(newImage)
-    return newImage    
+    return newImage
+    
+def findDifference(img1,img2):
+    return img1[1:,1:]-img2
+        
 
 image=os.path.dirname(__file__)+'/dc_metro.png'
-img = plt.imread(image)
+img = np.array(plt.imread(image))
 '''
 test=[[i for i in range(10)] for i in range(10)]
 print(filterImage(test))
@@ -53,12 +57,13 @@ plt.imshow(img, cmap=plt.cm.hot)
 plt.title("Original image")
 
 plt.subplot(2,2,2)
-plt.imshow(filterImage(img), cmap=plt.cm.hot)
+newImg=filterImage(img)
+plt.imshow(newImg, cmap=plt.cm.hot)
 plt.title("Filtered Image")
 
 plt.subplot(2,2,3)
-plt.imshow(filterImage(img), cmap=plt.cm.hot)
-plt.title("Difference Between Images")
+plt.imshow(findDifference(img,newImg), cmap=plt.cm.hot)
+plt.title("Difference Between Images") #????????????
 
 plt.subplot(2,2,4)
 
