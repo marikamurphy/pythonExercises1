@@ -103,7 +103,6 @@ w.set_xticklabels(labels,rotation=45)
 w.set_yticklabels(labels[::-1],rotation=45)
 plt.imshow(matrix,interpolation='none')
 # 10. Add a colorbar to the subplot.
-plt.colorbar()
 
 # Make sure that the figure window is updated when executing this file
 # as a script.
