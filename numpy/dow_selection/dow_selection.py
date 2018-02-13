@@ -58,11 +58,11 @@ masklargeVolumes=dow[:,VOLUME]>5.5e9
 
 # 2. How many are there?  (hint: use sum).
 numLargeVolumes=sum(masklargeVolumes)
-print("The number of rows with large volumes is: {}".format(numLargeVolumes))
+print("The volume has surpassed 5.5e9 on {} days".format(numLargeVolumes))
 # 3. Find the index of every row (or day) where the volume is greater
 #    than 5.5 billion. hint: look at the where() command.
-largeVolumes=where(masklargeVolumes)[0]
-print(str(largeVolumes))
+largeVolumeIndexes=where(masklargeVolumes)[0]
+print(str(largeVolumeIndexes))
 # BONUS:
 # a. Plot the adjusted close for EVERY day in 2008.
 # b. Now over-plot this plot with a 'red dot' marker for every
@@ -71,5 +71,5 @@ plt.title("Adjusted Close")
 
 plt.plot(dow[:,ADJ_CLOSE])
 
-plt.plot(largeVolumes,dow[largeVolumes,ADJ_CLOSE],'ro')
+plt.plot(largeVolumeIndexes,dow[largeVolumeIndexes,ADJ_CLOSE],'ro')
 plt.show()
