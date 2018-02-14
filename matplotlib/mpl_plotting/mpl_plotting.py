@@ -59,33 +59,40 @@ plt.plot(y1_noisy,'k-^')
 #    with a red dashed line.
 plt.cla()
 plt.plot(y1_noisy,'r--')
-plt.title('Sine Wave')
-plt.ylabel('y1_noisy')
+
+plt.title("Noisy Sin")
+plt.legend(['y1_noisy'])
+
 # 5. In the top, middle subplot, plot y2_noisy using a line plot with
 #    green circle markers.
 plt.subplot(2,3,2)
 plt.plot(y2_noisy,'go')
-plt.title('Offset Sine')
-plt.ylabel('y2_noisy')
+
+plt.title("Offset Noisy Sin")
+plt.legend(['y2_noisy'])
+
 # 6. In the top, right subplot, plot y1_noisy vs. y2_noisy using a scatter plot
 #    with blue circles.
 plt.subplot(2,3,3)
 plt.scatter(y1_noisy,y2_noisy,c='b')
-plt.title('Sine vs. Offset Sine')
+
+plt.title("Noisy Sin Waves")
 plt.xlabel('y1_noisy')
 plt.ylabel('y2_noisy')
+
 # 7. In the bottom, left subplot, plot the histogram of (y2_noisy - y1_noisy)
 plt.subplot(2,3,4)
 plt.hist(y2_noisy-y1_noisy)
-plt.title('Sine - Offset Sine')
-plt.ylabel('y2_noisy-y1_noisy')
+plt.title("Offset - Original Sin Wave")
+
 
 # 8. In the bottom, middle subplot, plot the histograms side by side for
 #    y1_noisy and y2_noisy (set hold to True again first).
 plt.subplot(2,3,5)
-plt.hist([y1_noisy,y2_noisy], label=['y1_noisy','y2_noisy'])
-plt.title('Sine & Offset Sine')
-plt.legend()
+
+plt.hist([y1_noisy,y2_noisy])
+plt.title("Noisy Sin Waves")
+
 # 9. In the bottom, right subplot, plot the correlation matrix of
 #        x1, y1, e1, y1_noisy, x2, y2, e2, y2_noisy
 #    as an image.
@@ -101,9 +108,13 @@ mask = np.zeros_like(matrix)
 w=seaborn.heatmap(matrix, cmap='viridis', vmax=1.0, vmin=-1.0 , mask = mask, linewidths=2.5)
 w.set_xticklabels(labels,rotation=45)
 w.set_yticklabels(labels[::-1],rotation=45)
+
 plt.imshow(matrix,interpolation='none')
 # 10. Add a colorbar to the subplot.
-plt.colorbar()
+
+
+plt.title("Correlation Matrix")
+
 
 # Make sure that the figure window is updated when executing this file
 # as a script.
