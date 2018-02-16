@@ -49,8 +49,10 @@ ADJ_CLOSE = 5
 # 0. The data has been loaded from a .csv file for you.
 
 # 'dow' is our NumPy array that we will manipulate.
-file=os.path.dirname(__file__)+'/dow.csv'
-dow = loadtxt(file, delimiter=',')
+root=os.path.dirname(__file__)
+file_name='dow.csv'
+file_path=os.path.join(root,file_name)
+dow = loadtxt(file_path, delimiter=',')
 
 # 1. Create a "mask" array that indicates which rows have a volume
 #    greater than 5.5 billion.
