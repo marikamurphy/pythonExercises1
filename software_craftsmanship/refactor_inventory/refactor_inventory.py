@@ -36,9 +36,9 @@ def findAdditionalFiles():
     return log_files   
     
     
-def readInventory(log_file,warehouse_log_list):
+def readInventory(log_file):
      
-                
+    transactions = []           
     with open(log_file, 'r', encoding='utf-8') as f:
         read_log_file = f.read()    
     for line in read_log_file.strip().splitlines(): # split string on lines
@@ -46,29 +46,30 @@ def readInventory(log_file,warehouse_log_list):
             warning="{} is not valid".format(line)
             print(warning)
         else: 
-            warehouse_log_list.append([line.split()[0], int(line.split()[1])]) # append line
-    return warehouse_log_list
+            part, count_str= line.split()
+            transactions.append([part, int(count_str)]) # append line
+    return transactions
     
           
     
-def displayWarehouseLog(warehouse_log_dict): 
-    template = "{:^10.10s}|{:^10.10s}"
+def displayWarehouseLog(warehouse_log_dict, column_width=10): 
+    template = "{name:^{w}.{w}s}|{number:^{w}.{w}s}"
     
-    log_output='\n'+template.format("Part Name", "Count")+'\n'+'|'.join(['-' * 10] * 2)
+    log_output='\n'+template.format(w=column_width,name="Part Name", number="Count")+'\n'+'|'.join(['-' * 10] * 2)
     for part_name, count in warehouse_log_dict.items():
-        log_output+="\n"+template.format(part_name, str(count)) 
+        log_output+="\n"+template.format(w=column_width, name=part_name, number=str(count)) 
     log_output+="\n"
 
     print(log_output)
     
 def updateWarehouseLog():
-    warehouse_log_list = []
+    transactions = []
     warehouse_log_dict = {}
      
     for log_file in findAdditionalFiles():
-        warehouse_log_list=readInventory(log_file, warehouse_log_list)
+        transactions.extend(readInventory(log_file))
         
-    for transaction in warehouse_log_list:
+    for transaction in transactions:
         warehouse_log_dict[transaction[0]] = warehouse_log_dict.get(transaction[0], 0) + transaction[1] # increment 
     
     displayWarehouseLog(warehouse_log_dict)
