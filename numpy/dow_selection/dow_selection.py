@@ -54,11 +54,12 @@ dow = loadtxt(file, delimiter=',')
 
 # 1. Create a "mask" array that indicates which rows have a volume
 #    greater than 5.5 billion.
-masklargeVolumes=dow[:,VOLUME]>5.5e9
+HIGH_VOL = 5.5e9
+masklargeVolumes=dow[:,VOLUME]>HIGH_VOL
 
 # 2. How many are there?  (hint: use sum).
 numLargeVolumes=sum(masklargeVolumes)
-print("The volume has surpassed 5.5e9 on {} days".format(numLargeVolumes))
+print("The volume has surpassed {} on {} days".format(HIGH_VOL,numLargeVolumes))
 # 3. Find the index of every row (or day) where the volume is greater
 #    than 5.5 billion. hint: look at the where() command.
 largeVolumeIndexes=where(masklargeVolumes)[0]
