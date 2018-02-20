@@ -25,10 +25,10 @@ lyrics=re.sub(r'[\.,]?','',lyrics)
 lyricList=lyrics.split()
 owords=[]
 for word in lyricList:
-        if(word[:1]=='o'):
+        if word.startswith('o'):
             try:
                 x=owords.index(word)
-            except:
+            except ValueError:
 
                 owords.append(word)
 

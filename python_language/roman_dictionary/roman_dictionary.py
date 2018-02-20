@@ -30,14 +30,15 @@ friends = {'julius': '100 via apian', 'cleopatra': '000 pyramid parkway'}
 romans = dict(brutus='234 via tratorium', cassius='111 aqueduct lane')
 countrymen = dict([('plebius','786 via bunius'), ('plebia', '786 via bunius')])
 
-print("Friends: "+str(list(friends.keys())))
-print("Their addresses: " +str(list(friends.values())))
-print("Altogether: "+str(list(friends.items())))
-del friends['julius']#rip
+print("Friends: {} ".format(', '.join(friends.keys())))
+print("Their addresses: {} ".format(', '.join(friends.values())))
+for name, address in friends.items():
+    print("{} lives on {}".format(name,address))
+friends.pop('julius')
 everyone={}
 everyone.update(friends)
 everyone.update(romans)
 everyone.update(countrymen)
-print("Cleopatra's address: "+friends['cleopatra'])
+print("Cleopatra's address: {}".format(friends['cleopatra']))
 
 everyone.clear()

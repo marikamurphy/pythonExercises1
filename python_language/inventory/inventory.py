@@ -31,16 +31,16 @@ warehouse_log = """ frombicator      10
                 """
                 
 warehouse_log=warehouse_log.strip()
-list_log=warehouse_log.split('\n')
-log={}
-for x in list_log:
-    k,v=x.split()
-    try:
-        log[k]=int(v)+log[k]
-    except:
-        log[k]=int(v)
+transactions=warehouse_log.split('\n')
+inventory={}
+for x in transactions:
+    part,count=x.split()
+    if part in inventory:
+        inventory[part]=int(count)+inventory[part]
+    else:
+        inventory[part]=int(count)
 
 
-for k,v in log.items():
-    print('{} {}'.format(k,v))
+for part,count in inventory.items():
+    print('{} {}'.format(part,count))
 

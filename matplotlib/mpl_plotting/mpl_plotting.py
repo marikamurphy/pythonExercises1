@@ -60,21 +60,26 @@ plt.plot(y1_noisy,'k-^')
 plt.cla()
 plt.plot(y1_noisy,'r--')
 
+
 plt.title("Noisy Sin")
 plt.legend(['y1_noisy'])
+
 
 # 5. In the top, middle subplot, plot y2_noisy using a line plot with
 #    green circle markers.
 plt.subplot(2,3,2)
 plt.plot(y2_noisy,'go')
 
+
 plt.title("Offset Noisy Sin")
 plt.legend(['y2_noisy'])
+
 
 # 6. In the top, right subplot, plot y1_noisy vs. y2_noisy using a scatter plot
 #    with blue circles.
 plt.subplot(2,3,3)
 plt.scatter(y1_noisy,y2_noisy,c='b')
+
 
 plt.title("Noisy Sin Waves")
 plt.xlabel('y1_noisy')
@@ -86,9 +91,11 @@ plt.hist(y2_noisy-y1_noisy)
 plt.title("Offset - Original Sin Wave")
 
 
+
 # 8. In the bottom, middle subplot, plot the histograms side by side for
 #    y1_noisy and y2_noisy (set hold to True again first).
 plt.subplot(2,3,5)
+
 
 plt.hist([y1_noisy,y2_noisy])
 plt.title("Noisy Sin Waves")
@@ -109,11 +116,13 @@ w=seaborn.heatmap(matrix, cmap='viridis', vmax=1.0, vmin=-1.0 , mask = mask, lin
 w.set_xticklabels(labels,rotation=45)
 w.set_yticklabels(labels[::-1],rotation=45)
 
+
 plt.imshow(matrix,interpolation='none')
 # 10. Add a colorbar to the subplot.
 
 
 plt.title("Correlation Matrix")
+
 
 
 # Make sure that the figure window is updated when executing this file
