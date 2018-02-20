@@ -71,21 +71,24 @@ These data were analyzed in detail in the following article:
 See :ref:`wind-statistics-solution`.
 """
 
-from numpy import loadtxt, min, max, mean, std, argmax, where, unravel_index
+from numpy import loadtxt, min, max, mean, std, argmax, where
+import numpy as np
 import os
 YEAR=0
 MONTH=1
 DAY=2
 LOC1=3
 
-fileOfWindStats=os.path.dirname(__file__)+'/wind.data'
-wind_statistics=loadtxt(fileOfWindStats, dtype=float)
+root=os.path.dirname(__file__)
+file_name='wind.data'
+file_path=os.path.join(root,file_name)
+wind_statistics=loadtxt(file_path, dtype=float)
 
 
 print("All locations & days")
 print("The minimum windspeed was {}".format(wind_statistics[:,LOC1:].min()))
 print("The maximum windspeed was {}".format(wind_statistics[:,LOC1:].max()))
-indexOfMax=unravel_index(wind_statistics[:,LOC1:].argmax(),wind_statistics.shape)[0]
+indexOfMax = np.unravel_index(wind_statistics[:,LOC1:].argmax(),wind_statistics.shape)[0]
 print("It was recorded {:.0f}-{:.0f}-{:.0f}".format(wind_statistics[indexOfMax,MONTH],wind_statistics[indexOfMax,DAY],wind_statistics[indexOfMax,YEAR]))
 print("The mean of the windspeeds was {}".format(wind_statistics[:,LOC1:].mean()))
 print("The standard deviaton of the windspeeds was {}\n".format(wind_statistics[:,LOC1:].std()))
@@ -105,5 +108,40 @@ print("The standard deviatons of the windspeeds were {}\n".format(wind_statistic
 
 print("Location with the greatest windspeed each day {}\n".format(wind_statistics[:,LOC1:].argmax(axis=1)))
 
-maskJanuary=wind_statistics[:,MONTH]==1
+maskJanuary = wind_statistics[:,MONTH]==1
 print("The means of the windspeeds for each location in January were {}".format(wind_statistics[maskJanuary,LOC1:].mean(axis=0)))
+
+#Bonus
+
+avg_windspeed_permonth=[]
+months = np.unique(wind_statistics[:,np.array([YEAR,MONTH])],axis=0, return_index=True)
+
+first_day=0
+for last_day in months[1][1:]:
+    avg_windspeed_permonth.append(wind_statistics[first_day:last_day,LOC1:].mean())
+    first_day=last_day
+print("The average windspeeeds for each month were {}/n".format(avg_windspeed_permonth))
+
+
+   
+maskYear1 = wind_statistics[:,YEAR]==wind_statistics[0,0]
+print("The min of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].min(axis=1)))   
+print("The max of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].max(axis=1)))   
+
+print("The means of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].mean(axis=1)))   
+print("The standard deviations of the windspeeds for each week in the first 52 weeks were {}".format(wind_statistics[maskYear1,LOC1:].std(axis=1)))   
+   
+   
+
+
+months = np.unique(wind_statistics[:,np.array([YEAR,MONTH])],axis=0, return_index=True)[1]
+tot_windspeed_month_loc=np.add.reduceat(wind_statistics[:,LOC1:],months)
+tot_windspeed_month=np.sum(tot_windspeed_month_loc,axis=1)/12
+days_per_month=np.append(months[1:],(wind_statistics.shape[0]))-months #this works if windspeed isn't recorded everyday
+#days_per_month=np.append(wind_statistics[months[1:]-1,DAY],wind_statistics[-1:,DAY]) #more readable?
+avg_windspeed_month=tot_windspeed_month/days_per_month
+print("The average windspeed each month is {}".format(avg_windspeed_month))
+
+
+
+
