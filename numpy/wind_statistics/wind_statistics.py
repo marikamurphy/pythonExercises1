@@ -90,7 +90,7 @@ print("The minimum windspeed was {}".format(wind_statistics[:,LOC1:].min()))
 print("The maximum windspeed was {}".format(wind_statistics[:,LOC1:].max()))
 indexOfMax = np.unravel_index(wind_statistics[:,LOC1:].argmax(),wind_statistics.shape)[0]
 print("It was recorded {:.0f}-{:.0f}-{:.0f}".format(wind_statistics[indexOfMax,MONTH],wind_statistics[indexOfMax,DAY],wind_statistics[indexOfMax,YEAR]))
-print("The mean of the windspeeds was {}".format(wind_statistics[:,LOC1:].mean()))
+print("The mean of the windspeeds was {:.2f}".format(wind_statistics[:,LOC1:].mean()))
 print("The standard deviaton of the windspeeds was {}\n".format(wind_statistics[:,LOC1:].std()))
 
 print("Each location & all days")
@@ -120,15 +120,15 @@ first_day=0
 for last_day in months[1][1:]:
     avg_windspeed_permonth.append(wind_statistics[first_day:last_day,LOC1:].mean())
     first_day=last_day
-print("The average windspeeeds for each month were {}/n".format(avg_windspeed_permonth))
+print("The average windspeeeds for each month were {}\n".format(avg_windspeed_permonth))
 
 
    
 maskYear1 = wind_statistics[:,YEAR]==wind_statistics[0,0]
-print("The min of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].min(axis=1)))   
-print("The max of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].max(axis=1)))   
+print("The min of the windspeeds for each week in the first 52 weeks were {}\n".format(wind_statistics[maskYear1,LOC1:].min(axis=1)))   
+print("The max of the windspeeds for each week in the first 52 weeks were {}\n".format(wind_statistics[maskYear1,LOC1:].max(axis=1)))   
 
-print("The means of the windspeeds for each week in the first 52 weeks were {}/n".format(wind_statistics[maskYear1,LOC1:].mean(axis=1)))   
+print("The means of the windspeeds for each week in the first 52 weeks were {}\n".format(wind_statistics[maskYear1,LOC1:].mean(axis=1)))   
 print("The standard deviations of the windspeeds for each week in the first 52 weeks were {}".format(wind_statistics[maskYear1,LOC1:].std(axis=1)))   
    
    
