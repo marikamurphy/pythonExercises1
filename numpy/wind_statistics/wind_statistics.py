@@ -126,12 +126,16 @@ print("\nThe average windspeeeds for each month: {}\n".format(np.array(avg_winds
 
 
 print("\nThe statistics for the first 52 weeks")
-maskYear1 = wind_statistics[:,YEAR]==wind_statistics[0,0]
-print("Minimums: {}\n".format(wind_statistics[maskYear1,LOC1:].min(axis=1)))   
-print("Maximums: {}\n".format(wind_statistics[maskYear1,LOC1:].max(axis=1)))   
+wind_data = wind_statistics[:, 3:]
+weekly_data = wind_data[:52 * 7].reshape(-1, 7 * 12)
 
-print("Means: {}\n".format(wind_statistics[maskYear1,LOC1:].mean(axis=1)))   
-print("Standard deviations: {}\n".format(wind_statistics[maskYear1,LOC1:].std(axis=1)))   
+
+maskYear1 = wind_statistics[:,YEAR]==wind_statistics[0,0]
+print("Minimums: {}\n".format(weekly_data.min(axis=1)))   
+print("Maximums: {}\n".format(weekly_data.max(axis=1)))   
+
+print("Means: {}\n".format(weekly_data.mean(axis=1)))   
+print("Standard deviations: {}\n".format(weekly_data.std(axis=1)))   
    
    
 
