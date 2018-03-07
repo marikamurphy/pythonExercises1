@@ -36,6 +36,7 @@ def findAdditionalFiles():
     return log_files   
     
     
+
 def readInventory(log_file):
      
     transactions = []           
