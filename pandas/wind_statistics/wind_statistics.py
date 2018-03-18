@@ -94,7 +94,8 @@ def wind_date_parser(year,month,day):
     return pd.Period(date_str, freq='D')
 
 wind_data = pd.read_table(file_path, sep='\\s+', index_col=0, 
-                            parse_dates={'Date':[0,1,2]}, date_parser=wind_date_parser)
+                            parse_dates={'Date':[0,1,2]}, 
+                            date_parser=wind_date_parser)
                             
 print("Windspeeds at various locations in Ireland")                            
 
@@ -150,4 +151,15 @@ plt.show()
 
 #part 10
 print("Mean for each month, each location:")
-print()
+print(wind_data.resample('M').mean().mean(axis=1))
+
+
+#part 11
+print("Statistics for 52 Weeks:")
+week_wind_data_52 = wind_data.resample('W').mean()[:52]
+week_stats_52 = pd.concat([week_wind_data_52.min(axis=1),
+                            week_wind_data_52.max(axis=1),
+                            week_wind_data_52.mean(axis=1)],
+                            axis=1, keys=['Min','Max','Mean'])
+
+print(week_stats_52)
