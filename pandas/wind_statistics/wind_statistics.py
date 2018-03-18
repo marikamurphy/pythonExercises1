@@ -82,12 +82,10 @@ See :ref:`pandas-wind-statistics-solution`.
 
 from matplotlib import pyplot as plt
 import pandas as pd
-from matplotlib import pyplot as plt
-import pandas as pd
 import os
-root=os.path.dirname(__file__)
-file_name='wind.data'
-file_path=os.path.join(root,file_name)
+root = os.path.dirname(__file__)
+file_name = 'wind.data'
+file_path = os.path.join(root,file_name)
 
 def wind_date_parser(year,month,day):
     
@@ -96,3 +94,11 @@ def wind_date_parser(year,month,day):
 
 wind_data = pd.read_table(file_path, sep='\\s+', index_col=0, 
                             parse_dates=[[0,1,2]], date_parser=wind_date_parser)
+                            
+#part 3
+print("Number of missing values over each location")
+num_rows_wind_data = wind_data.iloc[:,0].size
+print(num_rows_wind_data-wind_data.count())
+
+count_not_null = wind_data.count().sum()
+print("Number of non-missing values in total: {0}".format(count_not_null))
