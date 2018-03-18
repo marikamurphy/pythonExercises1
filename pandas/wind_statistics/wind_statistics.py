@@ -129,4 +129,25 @@ print("Means:")
 print(wind_data.mean(axis=1))
 
 #part 7
-print(wind_data.loc[])
+print("Mean for January")
+jan_wind_data= wind_data[wind_data.index.month == 1]
+print(jan_wind_data.mean())
+
+#part 8
+print("Downsampled yearly:")
+print(wind_data.resample('A').mean())
+print("Downsampled monthly:")
+print(wind_data.resample('M').mean())
+print("Downsampled weekly:")
+print(wind_data.resample('W').mean())
+
+#part 9
+monthly_wind_data = wind_data.resample('M').mean()
+axes = monthly_wind_data.plot()
+plt.figure()
+monthly_wind_data.boxplot()
+plt.show()
+
+#part 10
+print("Mean for each month, each location:")
+print()
