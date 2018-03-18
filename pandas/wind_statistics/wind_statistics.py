@@ -99,7 +99,7 @@ wind_data = pd.read_table(file_path, sep='\\s+', index_col=0,
                             
 print("Windspeeds at various locations in Ireland")                            
 
-#part 3
+print("\n3.")
 print("Number of missing values over each location")
 num_rows_wind_data = wind_data.iloc[:,0].size
 print(num_rows_wind_data-wind_data.count())
@@ -107,11 +107,11 @@ print(num_rows_wind_data-wind_data.count())
 count_not_null = wind_data.count().sum()
 print("Number of non-missing values in total: {0}".format(count_not_null))
 
-#part 4
+print("\n4.")
 print("Mean over all locations:")
 print(wind_data.mean().mean())
 
-#part 5
+print("\n5.")
 print("Statistics at each location:")
 print("Mins:")
 print(wind_data.min())
@@ -120,7 +120,7 @@ print(wind_data.max())
 print("Means:")
 print(wind_data.mean())
 
-#part 6
+print("\n6.")
 print("Daily statistics:")
 print("Mins:")
 print(wind_data.min(axis=1))
@@ -129,12 +129,12 @@ print(wind_data.max(axis=1))
 print("Means:")
 print(wind_data.mean(axis=1))
 
-#part 7
+print("\n7.")
 print("Mean for January")
-jan_wind_data= wind_data[wind_data.index.month == 1]
+jan_wind_data = wind_data[wind_data.index.month == 1]
 print(jan_wind_data.mean())
 
-#part 8
+print("\n8.")
 print("Downsampled yearly:")
 print(wind_data.resample('A').mean())
 print("Downsampled monthly:")
@@ -142,19 +142,19 @@ print(wind_data.resample('M').mean())
 print("Downsampled weekly:")
 print(wind_data.resample('W').mean())
 
-#part 9
+print("\n9. See Plots")
 monthly_wind_data = wind_data.resample('M').mean()
 axes = monthly_wind_data.plot()
 plt.figure()
 monthly_wind_data.boxplot()
 plt.show()
 
-#part 10
+print("\n10. (Bonus)")
 print("Mean for each month, each location:")
 print(wind_data.resample('M').mean().mean(axis=1))
 
 
-#part 11
+print("\n11. (Bonus)")
 print("Statistics for 52 Weeks:")
 week_wind_data_52 = wind_data.resample('W').mean()[:52]
 week_stats_52 = pd.concat([week_wind_data_52.min(axis=1),
