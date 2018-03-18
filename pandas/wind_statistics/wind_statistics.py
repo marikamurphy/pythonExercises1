@@ -87,14 +87,17 @@ root = os.path.dirname(__file__)
 file_name = 'wind.data'
 file_path = os.path.join(root,file_name)
 
+#parts 1&2
 def wind_date_parser(year,month,day):
     
     date_str = "19{0}-{1}-{2}".format(year,month,day)
     return pd.Period(date_str, freq='D')
 
 wind_data = pd.read_table(file_path, sep='\\s+', index_col=0, 
-                            parse_dates=[[0,1,2]], date_parser=wind_date_parser)
+                            parse_dates={'Date':[0,1,2]}, date_parser=wind_date_parser)
                             
+print("Windspeeds at various locations in Ireland")                            
+
 #part 3
 print("Number of missing values over each location")
 num_rows_wind_data = wind_data.iloc[:,0].size
@@ -102,3 +105,28 @@ print(num_rows_wind_data-wind_data.count())
 
 count_not_null = wind_data.count().sum()
 print("Number of non-missing values in total: {0}".format(count_not_null))
+
+#part 4
+print("Mean over all locations:")
+print(wind_data.mean().mean())
+
+#part 5
+print("Statistics at each location:")
+print("Mins:")
+print(wind_data.min())
+print("Maxes:")
+print(wind_data.max())
+print("Means:")
+print(wind_data.mean())
+
+#part 6
+print("Daily statistics:")
+print("Mins:")
+print(wind_data.min(axis=1))
+print("Maxes:")
+print(wind_data.max(axis=1))
+print("Means:")
+print(wind_data.mean(axis=1))
+
+#part 7
+print(wind_data.loc[])
