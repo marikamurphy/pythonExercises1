@@ -87,21 +87,32 @@ class ParticleList(HasTraits):
     
     particles = List
     
+    particles_editor = TableEditor(
+                columns=[
+                    ObjectColumn(name='mass'),
+                    ObjectColumn(name='velocity'),
+                    ObjectColumn(name='momentum'),
+                    ExpressionColumn(label='Rel. momentum',
+                    expression="object.momentum / \
+                                sqrt(1 - object.velocity**2 / c**2)",
+                    globals=dict(sqrt=sqrt, c=c))
+                   ]
+                )
+    
     view = View(
                 Group(
-                    Item('particles', editor=TableEditor(columns=[
-                        ObjectColumn(name='mass'),
-                        ObjectColumn(name='velocity'),
-                        ObjectColumn(name='momentum'),
-                        ExpressionColumn(label='Rel. momentum',
-                        expression="object.momentum / \
-                        sqrt(1 - object.velocity**2 / c**2)",
-                        globals=dict(sqrt=sqrt, c=c))  
-
-                    ]
-                    )),
+                    Item('particles', 
+                        editor=particles_editor, 
+                            show_label=False
+                        ),
+                        label='Particles',
+                        show_border=True,
+                        springy=True
+                    
                     
                     ),
+                    width=400,
+                    height=200,
                     resizable=True,
                     buttons=OKCancelButtons
                 
