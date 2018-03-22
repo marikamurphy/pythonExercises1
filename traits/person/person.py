@@ -35,20 +35,26 @@ class Person(HasTraits):
     gender = Enum('female', 'male')
     
     view = View(
-                HGroup(
-                        
-                        Item(name='first_name', springy=True),
-                        Item(name='last_name', springy=True),
-                        springy=True
-
-                        ),
-                Item(name='gender'),
-                Item(name='age'),
-                
-                resizable=True,
-                buttons = OKCancelButtons
-               
     
+                Group(
+                
+                    HGroup(
+                        
+                            Item('first_name', label='first', springy=True),
+                            Item('last_name', label='last', springy=True),
+                            springy=True,
+                            show_border=True,
+                            label='Name'
+
+                            ),
+                            
+                        VGroup('gender', 'age'),
+                        
+                    ),
+                    
+                    resizable=True,
+                    buttons=OKCancelButtons  
+                                
                 )
     
             
