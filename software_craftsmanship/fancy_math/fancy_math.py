@@ -48,6 +48,9 @@ def slope(pt1,pt2):
     
     dx = pt2[0]-pt1[0]
     
-    slope = dy/dx
+    try:
+        slope = dy/dx
+    except:
+        slope = 'und'
     
     return slope

@@ -14,5 +14,15 @@ from nose.tools import assert_almost_equal, assert_equal
 
 from fancy_math import slope
 
-def test_slope_xxx():
-    assert slope([1,2],[2,3]) == 1.0
+def test_slope_und():
+    '''See if undefined slope is caught'''
+    assert slope([0,0],[0,0]) == 'und'
+    
+def test_slope_int():  
+    '''Test for int'''  
+    assert slope([0,0],[1,1]) == 1
+
+def test_slope_float():
+    '''Test for float'''    
+    assert slope([0.0,0.0],[1.0,1.0]) == 1.0
+    
