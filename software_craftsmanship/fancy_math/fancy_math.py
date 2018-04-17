@@ -40,17 +40,28 @@ statements, use the "-s" flag.
 
 See: :ref:`fancy-math-solution`.
 """
+from __future__ import division
+from numpy import Inf
 
 
 def slope(pt1,pt2):
     
-    dy = pt2[1]-pt1[1]
+    if pt1 != pt2:
+        dy = pt2[1]-pt1[1]
     
-    dx = pt2[0]-pt1[0]
+        dx = pt2[0]-pt1[0]
     
-    try:
-        slope = dy/dx
-    except:
-        slope = 'und'
+        try:
+            slope = dy/dx
+        
+        except ZeroDivisionError:
+            if dy > 0:
+                slope = Inf
+            else:
+                slope = -Inf
     
-    return slope
+        return slope
+        
+    else:
+        
+        return 'und'
