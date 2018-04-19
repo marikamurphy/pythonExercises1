@@ -10,8 +10,10 @@ def integrator(func, a, b, precision=100.):
     """ Compute the definite integral of a given function func between a and b
     using the rectangle method.
     """
+    if a==b:
+        return 0
     x = linspace(a, b, precision)
-    dx = (b - a) / precision
+    dx = float(b - a) / (int(precision)-1)
     left_point_values = func(x[:-1])
     right_point_values = func(x[1:])
     return dx * sum(left_point_values + right_point_values) / 2.

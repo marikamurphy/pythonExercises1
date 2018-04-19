@@ -33,9 +33,11 @@ numpy.testing for the needed assertion function for this question.
 
 See :ref:`test_integral_solution`.
 """
+
 from compute_integral import integrator, anti_derivative
 from numpy import ones, sin, pi, cos, linspace
 import unittest
+
 
 class IntegratorTester(unittest.TestCase):
 
@@ -56,6 +58,8 @@ class IntegratorTester(unittest.TestCase):
             return x
         
         self.assertAlmostEqual(integrator(func, 0, 10), 50)
+    
+    
 
     def test_integrator_x_high_res(self):
         """ Test integration of the function x with a higher precision
@@ -65,21 +69,31 @@ class IntegratorTester(unittest.TestCase):
             return x
             
         self.assertAlmostEqual(integrator(func, 0, 10, 1000), 50)
+        
 
     def one_more_test_integrator(self):
-        """ What else should we test?
+        """ Test sin and cos
         """
         # Your test here
+        self.assertAlmostEqual(integrator(cos, 0, 2*pi), 0)
+        self.assertAlmostEqual(integrator(sin, 0, 2*pi), 0)
+        
+        self.assertAlmostEqual(integrator(sin, 0, pi, 1000), 2, 4)
+        self.assertAlmostEqual(integrator(cos, -pi/2., pi/2., 1000), 2, 4)
+        
+
 
     def test_anti_derivative(self):
         """ Bonus Bonus: Test computing the anti-derivative of the cosine
         function and compare it to the sin function over the [0, 2pi] interval.
         """
         # Your test here
-        def func_cos(x):
-            return cos(x)
+        vals = linspace(0, 2*pi, 100)
         
-        self.assertAlmostEqual(integrator(func_cos, 0, 2*pi), (sin(2*pi)- sin(0)))
-
+        from numpy.testing import assert_array_almost_equal
+        assert_array_almost_equal(anti_derivative(cos, vals, 1000), sin(vals), 
+                                    4)
+                                    
+       
 if __name__ == "__main__":
     unittest.main()
