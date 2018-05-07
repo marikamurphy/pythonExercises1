@@ -18,7 +18,7 @@ class Square(Rectangle):
         return self.width**2
         
 square = Square()
-
+square.edit_traits('view')
 square.edit_traits('square_view')
 
 
