@@ -1,5 +1,6 @@
 from __future__ import print_function
 from mandelbrot.model.numpy_core import find_mand_coords
+from mandelbrot.model.core_cython import mandelbrot_grid
 from mandelbrot.ui.ascii import create_ascii
 from mandelbrot.ui.simple_plot import plot_mandelbrot 
 

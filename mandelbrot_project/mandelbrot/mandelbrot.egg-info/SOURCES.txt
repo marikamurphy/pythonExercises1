@@ -7,3 +7,4 @@ mandelbrot.egg-info/SOURCES.txt
 mandelbrot.egg-info/dependency_links.txt
 mandelbrot.egg-info/top_level.txt
 mandelbrot/model/core_cython.pyx
+mandelbrot/model/core_cython.pyx
