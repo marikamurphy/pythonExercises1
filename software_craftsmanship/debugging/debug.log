@@ -1,0 +1,27 @@
+INFO:root:starting calculate_final_inventory
+DEBUG:root:found log files: ['data/belgium.log', 'data/canada.log', 'data/logarithms']
+DEBUG:root:found transaction: 'waffle 10'
+DEBUG:root:found transaction: 'fries 5'
+DEBUG:root:found transaction: 'chocolate 5.'
+INFO:root:starting calculate_final_inventory
+DEBUG:root:found log files: ['data/belgium.log', 'data/canada.log']
+DEBUG:root:found transaction: 'waffle 10'
+DEBUG:root:found transaction: 'fries 5'
+DEBUG:root:found transaction: 'chocolate 5.'
+DEBUG:root:updated inventory to: {'waffle': 10.0}
+DEBUG:root:updated inventory to: {'fries': 5.0, 'waffle': 10.0}
+DEBUG:root:updated inventory to: {'fries': 5.0, 'waffle': 10.0, 'chocolate': 5.0}
+DEBUG:root:found transaction: 'syrup 10'
+DEBUG:root:found transaction: 'puck 20'
+DEBUG:root:found transaction: 'puck -5'
+DEBUG:root:found transaction: 'hockey stick 5'
+WARNING:root:'hockey stick 5' is not a valid record
+DEBUG:root:updated inventory to: {'fries': 5.0, 'syrup': 10.0, 'waffle': 10.0, 'chocolate': 5.0}
+DEBUG:root:updated inventory to: {'fries': 5.0, 'puck': 20.0, 'syrup': 10.0, 'waffle': 10.0, 'chocolate': 5.0}
+DEBUG:root:updated inventory to: {'fries': 5.0, 'puck': 15.0, 'syrup': 10.0, 'waffle': 10.0, 'chocolate': 5.0}
+DEBUG:root:adding key: fries, value: 5.0
+DEBUG:root:adding key: puck, value: 15.0
+DEBUG:root:adding key: syrup, value: 10.0
+DEBUG:root:adding key: waffle, value: 10.0
+DEBUG:root:adding key: chocolate, value: 5.0
+INFO:root:finishing calculate_final_inventory
